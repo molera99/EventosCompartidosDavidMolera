@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "809700149991",
+    "project_id": "eventoscompartidos-4dc62",
+    "storage_bucket": "eventoscompartidos-4dc62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809700149991:android:e973fb92de791a928a7042",
+        "android_client_info": {
+          "package_name": "com.example.eventoscompartidosdavidmolera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809700149991-h7g41tabh03pl57sl0eintkhgabgteet.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eventoscompartidosdavidmolera",
+            "certificate_hash": "3d805d8e45228a434c46242427ced6f6f737df0e"
+          }
+        },
+        {
+          "client_id": "809700149991-6m4ek9silnbr971b7v8to2aps66b5iif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmjiIj4zns7e-tysTYIB_5kz27VlSmKGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809700149991-6m4ek9silnbr971b7v8to2aps66b5iif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
