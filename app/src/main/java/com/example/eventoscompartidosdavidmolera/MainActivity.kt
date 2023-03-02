@@ -52,7 +52,23 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         if(us.activate){
-                            irHome(it.result?.user?.email?:"", ProviderType.BASIC)  //Esto de los interrogantes es por si está vacío el email.
+                            if(us.rol=="user"){
+                                irHome( it.result?.user?.email?:"",ProviderType.BASIC,us)
+                            }else if(us.rol=="admin"){
+                                AlertDialog.Builder(this)
+                                    .setTitle("ELEGIR INICIO DE SESION")
+                                    .setMessage("¿Como quieres iniciar tu sesion?")
+                                    .setPositiveButton("Admin",
+                                        DialogInterface.OnClickListener { dialog, which ->
+                                            irHomeAdmin( it.result?.user?.email?:"",ProviderType.BASIC,us)
+                                        })
+                                    .setNegativeButton("Usuario normal",
+                                        DialogInterface.OnClickListener { dialog, id ->
+                                            irHome( it.result?.user?.email?:"",ProviderType.BASIC,us)
+                                        })
+                                    .show()
+                            }
+
                         }else{
                             AlertDialog.Builder(this)
                                 .setTitle("ERROR")
@@ -80,8 +96,17 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun irHome(email:String, provider: ProviderType){
+    private fun irHome(email:String, provider: ProviderType,user: User){
         val homeIntent = Intent(this, HomeActivity::class.java).apply {
+            putExtra("user",user)
+            putExtra("email",email)
+            putExtra("provider",provider.name)
+        }
+        startActivity(homeIntent)
+    }
+    private fun irHomeAdmin(email:String, provider: ProviderType,user: User){
+        val homeIntent = Intent(this, HomeAdminActivity::class.java).apply {
+            putExtra("user",user)
             putExtra("email",email)
             putExtra("provider",provider.name)
         }
@@ -103,6 +128,7 @@ class MainActivity : AppCompatActivity() {
             if (dc.type == DocumentChange.Type.ADDED){
 
                 us = User(
+                    dc.document.id,
                     dc.document.get("email").toString(),
                     dc.document.get("password").toString(),
                     dc.document.get("name").toString(),
