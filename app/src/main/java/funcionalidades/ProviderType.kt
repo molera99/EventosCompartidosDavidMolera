@@ -1,4 +1,4 @@
-package com.example.eventoscompartidosdavidmolera
+package funcionalidades
 
 enum class ProviderType {
     BASIC,
