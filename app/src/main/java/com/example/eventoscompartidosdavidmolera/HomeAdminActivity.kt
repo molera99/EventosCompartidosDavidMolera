@@ -20,6 +20,8 @@ class HomeAdminActivity : AppCompatActivity() {
         binding = ActivityHomeAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var users=ArrayList<User>()
+
         val bundle:Bundle? = intent.extras
         val email = bundle?.getString("email").toString()
         val prov:String = bundle?.getString("provider").toString()
