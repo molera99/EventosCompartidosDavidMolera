@@ -3,6 +3,7 @@ package com.example.eventoscompartidosdavidmolera
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -10,6 +11,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -19,10 +21,13 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import modelos.Events
 
 class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener, GoogleMap.OnPoiClickListener, GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerClickListener {
     private val LOCATION_REQUEST_CODE: Int = 0
     private lateinit var map: GoogleMap
+    lateinit var evento:Events
+    lateinit var latlong:LatLng
     private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
@@ -66,20 +71,21 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
         map.setOnPoiClickListener(this)
         map.setOnMapLongClickListener (this)
         map.setOnMarkerClickListener(this)
-        val latLng = LatLng(38.8851500, -3.8481900)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f))
+        val latLng = LatLng(40.4165000, -3.7025600)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f))
     }
     @SuppressLint("MissingPermission")
     private fun irubicacioActual() {
-        val locationManager = AppCompatActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val locationManager = this.context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val miUbicacion = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
         val latLng = LatLng(miUbicacion!!.latitude, miUbicacion.longitude)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18f)) //--> Mueve la cámara a esa posición, sin efecto. El valor real indica el nivel de Zoom, de menos a más.
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14f)) //--> Mueve la cámara a esa posición, sin efecto. El valor real indica el nivel de Zoom, de menos a más.
     }
 
 
     override fun onMyLocationButtonClick(): Boolean {
-        TODO("Not yet implemented")
+        irubicacioActual()
+        return true
     }
 
     override fun onMyLocationClick(p0: Location) {
@@ -91,11 +97,13 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
     }
 
     override fun onMapLongClick(p0: LatLng?) {
-        TODO("Not yet implemented")
+        map.addMarker(MarkerOptions().position(p0!!).title("Lozalizacion"))
+        latlong=p0
     }
 
     override fun onMarkerClick(p0: Marker?): Boolean {
-        TODO("Not yet implemented")
+        Toast.makeText(this.context, "Estás en ${p0!!.title}, ${p0!!.position}", Toast.LENGTH_SHORT).show()
+        return true
     }
     fun isPermissionsGranted() = ContextCompat.checkSelfPermission(
         AppCompatActivity(),
