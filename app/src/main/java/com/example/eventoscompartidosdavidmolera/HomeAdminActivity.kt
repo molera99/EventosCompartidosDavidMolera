@@ -3,6 +3,7 @@ package com.example.eventoscompartidosdavidmolera
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -118,6 +119,10 @@ class HomeAdminActivity : AppCompatActivity() {
             prefs?.apply ()
             FirebaseAuth.getInstance().signOut()
             onBackPressed()
+        }
+        binding.btCrearEvento.setOnClickListener{
+            var intentEvento = Intent(this,EventosActivity::class.java)
+            startActivity(intentEvento)
         }
 
     }
