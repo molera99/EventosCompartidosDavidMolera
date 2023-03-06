@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.example.eventoscompartidosdavidmolera.databinding.ActivityAltaUsuarioEventoBinding
 import com.example.eventoscompartidosdavidmolera.databinding.ActivityEliminarEventoBinding
 import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -94,6 +95,14 @@ class AltaUsuarioEventoActivity : AppCompatActivity() {
                 .addOnFailureListener{
                     Toast.makeText(this, "fallo al añadir documento",Toast.LENGTH_SHORT).show()
                 }
+            db.collection("users")
+                .document(usId).update("events",FieldValue.arrayUnion(eventId))
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Usuario añadido al evento", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener{
+                    Toast.makeText(this, "fallo al añadir documento",Toast.LENGTH_SHORT).show()
+                }
             var intentAdmin= Intent(this,HomeAdminActivity::class.java)
             startActivity(intentAdmin)
         }
@@ -138,6 +147,14 @@ class AltaUsuarioEventoActivity : AppCompatActivity() {
     private fun obtenerDatos2(datos: QuerySnapshot?) {
         for(dc: DocumentChange in datos?.documentChanges!!){
             if (dc.type == DocumentChange.Type.ADDED){
+                var events : ArrayList<String>
+
+                if (dc.document.get("events") != null){
+                    events = dc.document.get("eventss") as ArrayList<String>
+                }
+                else {
+                    events = arrayListOf()
+                }
                 var us = User(
                     dc.document.id,
                     dc.document.get("email").toString(),
@@ -145,7 +162,8 @@ class AltaUsuarioEventoActivity : AppCompatActivity() {
                     dc.document.get("name").toString(),
                     dc.document.get("age").toString().toInt(),
                     dc.document.get("rol").toString(),
-                    dc.document.get("activate").toString().toBoolean()
+                    dc.document.get("activate").toString().toBoolean(),
+                    events
                 )
                 Listas.listaUsers.clear()
                 Listas.listaUsers.add(us)

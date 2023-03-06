@@ -7,8 +7,11 @@ import android.os.Bundle
 import com.example.eventoscompartidosdavidmolera.databinding.ActivityHomeBinding
 import com.example.eventoscompartidosdavidmolera.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.tasks.await
 import modelos.User
 
 class HomeActivity : AppCompatActivity() {
@@ -38,4 +41,5 @@ class HomeActivity : AppCompatActivity() {
             onBackPressed()
         }
     }
+
 }

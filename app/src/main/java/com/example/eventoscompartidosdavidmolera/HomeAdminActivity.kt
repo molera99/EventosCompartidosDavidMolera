@@ -144,7 +144,14 @@ class HomeAdminActivity : AppCompatActivity() {
     private fun obtenerDatos(datos: QuerySnapshot?) {
         for(dc: DocumentChange in datos?.documentChanges!!){
             if (dc.type == DocumentChange.Type.ADDED){
+                var events : ArrayList<String>
 
+                if (dc.document.get("events") != null){
+                    events = dc.document.get("eventss") as ArrayList<String>
+                }
+                else {
+                    events = arrayListOf()
+                }
                 var us = User(
                     dc.document.id,
                     dc.document.get("email").toString(),
@@ -152,7 +159,8 @@ class HomeAdminActivity : AppCompatActivity() {
                     dc.document.get("name").toString(),
                     dc.document.get("age").toString().toInt(),
                     dc.document.get("rol").toString(),
-                    dc.document.get("activate").toString().toBoolean()
+                    dc.document.get("activate").toString().toBoolean(),
+                    events
                 )
                 Listas.listaUsers.add(us)
             }

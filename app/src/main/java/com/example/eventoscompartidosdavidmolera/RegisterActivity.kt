@@ -35,7 +35,8 @@ class RegisterActivity : AppCompatActivity() {
                             "name" to binding.etNombre.text.toString(),
                             "age" to binding.etEdad.text.toString().toInt(),
                             "rol" to "user",
-                            "activate" to false
+                            "activate" to false,
+                            "events" to arrayListOf<String>()
                         )
 
                         // Add a new document with a generated ID
