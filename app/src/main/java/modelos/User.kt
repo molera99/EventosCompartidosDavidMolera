@@ -9,4 +9,5 @@ data class User(
     var name:String,
     var age: Int,
     var rol:String,
-    var activate:Boolean): Serializable {}
+    var activate:Boolean,
+    var eventos:ArrayList<String>): Serializable {}
