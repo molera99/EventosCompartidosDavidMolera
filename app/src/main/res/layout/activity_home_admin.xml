@@ -7,6 +7,30 @@
     tools:context=".HomeAdminActivity">
 
     <Button
+        android:id="@+id/btBajaUsers"
+        android:layout_width="165dp"
+        android:layout_height="54dp"
+        android:text="Baja usuarios eventos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.593" />
+
+    <Button
+        android:id="@+id/btEliminarEvento"
+        android:layout_width="165dp"
+        android:layout_height="51dp"
+        android:text="Eliminar evento"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.823" />
+
+    <Button
         android:id="@+id/btCrearEvento"
         android:layout_width="166dp"
         android:layout_height="45dp"
@@ -19,16 +43,16 @@
         app:layout_constraintVertical_bias="0.712" />
 
     <Button
-        android:id="@+id/btUsuariosEvento"
-        android:layout_width="166dp"
-        android:layout_height="45dp"
-        android:text="ver usuarios"
+        android:id="@+id/btAltaUsers"
+        android:layout_width="165dp"
+        android:layout_height="54dp"
+        android:text="Alta usuarios eventos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.562" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <TextView
         android:id="@+id/textView"

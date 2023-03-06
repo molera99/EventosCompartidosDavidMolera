@@ -1,6 +1,7 @@
 package com.example.eventoscompartidosdavidmolera
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -30,7 +31,7 @@ class EventosActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
         binding.btCrearEvent.setOnClickListener{
-            Toast.makeText(this, "Estás en ${fragmento.latlong.latitude}", Toast.LENGTH_SHORT).show()
+
 
 
             var even = hashMapOf(
@@ -44,10 +45,14 @@ class EventosActivity : AppCompatActivity() {
                 .add(even)
                 .addOnSuccessListener {
                     Log.e(TAG, "Documento añadido.")
+                    Toast.makeText(this, "Evento añadido con exito", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Error adding document", e.cause)
+                    Toast.makeText(this, "Fallo en la creacion del evento", Toast.LENGTH_SHORT).show()
                 }
+            var intentAdmin = Intent(this,HomeAdminActivity::class.java)
+            startActivity(intentAdmin)
 
         }
     }

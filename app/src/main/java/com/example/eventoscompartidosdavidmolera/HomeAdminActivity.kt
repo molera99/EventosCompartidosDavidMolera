@@ -53,7 +53,6 @@ class HomeAdminActivity : AppCompatActivity() {
         for(i in Listas.listaUsers.indices){
             users.add(Listas.listaUsers[i].email)
         }
-        print(Listas.listaUsers.count())
 
         val adaptadorUsers = ArrayAdapter(this, R.layout.item_spinner,R.id.txtItemSpinner,users)
         binding.spUsuarios.adapter = adaptadorUsers
@@ -103,15 +102,8 @@ class HomeAdminActivity : AppCompatActivity() {
         }
 
         val bundle:Bundle? = intent.extras
-        val email = bundle?.getString("email").toString()
-        val prov:String = bundle?.getString("provider").toString()
-        val us = intent.getSerializableExtra("user") as User
 
-        //Guardado de datos para toda la aplicación en la sesión.
-        val prefs: SharedPreferences.Editor? = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-        prefs?.putString("email",bundle?.getString("email").toString())
-        prefs?.putString("provider",bundle?.getString("provider").toString())
-        prefs?.apply () //Con estos datos guardados en el fichero de sesión, aunque la app se detenga tendremos acceso a los mismos.
+
 
         binding.btCerrarAdmin.setOnClickListener{
             val prefs: SharedPreferences.Editor? = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
@@ -123,6 +115,10 @@ class HomeAdminActivity : AppCompatActivity() {
         binding.btCrearEvento.setOnClickListener{
             var intentEvento = Intent(this,EventosActivity::class.java)
             startActivity(intentEvento)
+        }
+        binding.btEliminarEvento.setOnClickListener{
+            var intentEliminar = Intent(this,EliminarEventoActivity::class.java)
+            startActivity(intentEliminar)
         }
 
     }
