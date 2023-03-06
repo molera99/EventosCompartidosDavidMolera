@@ -120,6 +120,15 @@ class HomeAdminActivity : AppCompatActivity() {
             var intentEliminar = Intent(this,EliminarEventoActivity::class.java)
             startActivity(intentEliminar)
         }
+        binding.btAltaUsers.setOnClickListener{
+            var intentAlta = Intent(this,AltaUsuarioEventoActivity::class.java)
+            startActivity(intentAlta)
+        }
+
+        binding.btBajaUsers.setOnClickListener{
+            var intentBaja = Intent(this,BajaUsuarioEventoActivity::class.java)
+            startActivity(intentBaja)
+        }
 
     }
     suspend fun getDataFromFireStore()  : QuerySnapshot? {
