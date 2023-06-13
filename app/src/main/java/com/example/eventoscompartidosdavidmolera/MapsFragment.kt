@@ -89,11 +89,11 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
     }
 
     override fun onMyLocationClick(p0: Location) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onPoiClick(p0: PointOfInterest?) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onMapLongClick(p0: LatLng?) {

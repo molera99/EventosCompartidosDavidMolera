@@ -150,7 +150,7 @@ class AltaUsuarioEventoActivity : AppCompatActivity() {
                 var events : ArrayList<String>
 
                 if (dc.document.get("events") != null){
-                    events = dc.document.get("eventss") as ArrayList<String>
+                    events = dc.document.get("events") as ArrayList<String>
                 }
                 else {
                     events = arrayListOf()
